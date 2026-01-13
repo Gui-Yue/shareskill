@@ -1,12 +1,12 @@
 # Skill Search Frontend
 
 A simple Next.js frontend for browsing and searching skills backed by a
-SQLite database loaded in the browser via sql.js.
+remote Supabase Postgres database.
 
 ## Features
 - List/search skills with tags, categories, and metadata
 - Detail page with description, usage, and download links
-- Works with external `skill.db` hosting
+- Powered by Supabase for data storage
 
 ## Quick Start
 1) Install dependencies
@@ -14,13 +14,14 @@ SQLite database loaded in the browser via sql.js.
 pnpm install
 ```
 
-2) Configure the database URL (recommended)
+2) Configure Supabase credentials
 Create `.env.local`:
 ```bash
-NEXT_PUBLIC_SKILL_DB_URL=https://example.com/skill.db
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+# or use an anon key instead of the service role key:
+# SUPABASE_ANON_KEY=your-anon-key
 ```
-
-If not set, the app falls back to `/skill.db` in `public/`.
 
 3) Run dev server
 ```bash
@@ -34,6 +35,6 @@ pnpm start
 ```
 
 ## Notes
-- For local testing, you can set `NEXT_PUBLIC_SKILL_DB_URL=/skill.db` and
-  place the file at `public/skill.db`.
+- The API routes use Supabase server-side; set the environment variables
+  in the deployment environment as well.
 - The GitHub icon in the header links to the project repo.
